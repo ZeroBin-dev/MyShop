@@ -1,0 +1,25 @@
+server:
+  port: 1223
+
+spring:
+  application:
+    name: order-service
+
+  datasource:
+    url: jdbc:mariadb://localhost:3306/mymall
+    username: root
+    password: root
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+eureka:
+  instance:
+    instance-id: ${spring.cloud.client.hostname}:${spring.application.instance_id:${random.value}}
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://127.0.0.1:1220/eureka
